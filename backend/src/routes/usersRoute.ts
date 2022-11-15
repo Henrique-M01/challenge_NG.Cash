@@ -11,4 +11,9 @@ userRouter.post('/register',
 (req: Request, res: Response) => usersController.createUser(req, res),
 );
 
+userRouter.post('/login',
+  validateBodyUsers,
+  (req: Request, res: Response) => usersController.userLogin(req, res),
+);
+
 export default userRouter;

@@ -29,6 +29,17 @@ export default class UsersModel {
     return user;
   }
 
+  public async userLogin(userName: string, password: string) {
+    const hashedPassword = await this.hashPassword(password);
+
+    const user = await this.connection.users.findFirst({
+      where: { username: userName, password: hashedPassword },
+      select: { id: true, username: true, accountId: true },
+    });
+
+    return user;
+  }
+
   private async hashPassword(password: string) {
     return md5(password);
   }
