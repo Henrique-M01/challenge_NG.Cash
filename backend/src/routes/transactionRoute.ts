@@ -8,8 +8,7 @@ const transactionRouter = Router();
 const transactionController = new TransactionController();
 
 transactionRouter.put('/',
-validateBodyTransactions,
-  authenticate,
+[authenticate, validateBodyTransactions],
   (req: Request, res: Response) =>  transactionController.cashInAndCashOut(req, res));
 
 export default transactionRouter;
