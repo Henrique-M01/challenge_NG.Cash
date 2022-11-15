@@ -23,7 +23,7 @@ model Users {
 
 model Accounts {
   id      Int @id @default(autoincrement()) @unique
-  balance String
+  balance Int
   
   user Users[]
   transactionsDebit Transactions[] @relation("debitId")
@@ -32,10 +32,9 @@ model Accounts {
 
 model Transactions {
   id        Int @id @default(autoincrement())
-  accountId Int
   debitedAccountId Int
   creditedAccountId Int
-  value    String
+  value    Int
   createdAt DateTime @default(now())
 
   debitId Accounts @relation("debitId", fields: [creditedAccountId], references: [id])
