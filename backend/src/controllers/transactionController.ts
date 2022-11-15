@@ -22,4 +22,12 @@ export default class TransactionController {
 
     return res.status(200).json({ message: 'Transaction successful', transaction });
   }
+
+  public async getUserTransactionsCashIn(req: RequestWithToken, res: Response) {
+    const token = req.tokenData?.data;
+
+    const transactions = await this.transactionService.getUserTransactionsCashIn(token?.accountId);
+
+    return res.status(200).json({ transactions });
+  }
 }

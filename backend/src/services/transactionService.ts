@@ -15,4 +15,10 @@ export default class TransactionServices {
 
     return transaction;
   }
+
+  public async getUserTransactionsCashIn(id: number) {
+    const transactions = await this.transactionModel.getUserTransactionsCashIn(id);
+
+    return transactions;
+  }
 }
