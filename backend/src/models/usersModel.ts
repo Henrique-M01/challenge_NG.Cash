@@ -14,10 +14,17 @@ export default class UsersModel {
     const user = await this.connection.users.upsert({
       where: { username: userName },
       update: {},
-      create: { username: userName, password: hashedPassword },
+      create: { 
+        username: userName,
+        password: hashedPassword,
+        account: {
+          create: {
+            balance: '100',
+          }
+        }
+      },
+      select: { id: true, username: true, accountId: true },
     });
-
-    // se criar o user com sucesso, criar a conta tambem, se nao, retornar o erro.
 
     return user;
   }
