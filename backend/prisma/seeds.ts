@@ -10,7 +10,7 @@ async function main() {
       
       account: {
         create: {
-          balance: '100',
+          balance: 100,
         }
       }
     },
@@ -23,7 +23,7 @@ async function main() {
       
       account: {
         create: {
-          balance: '100',
+          balance: 100,
         }
       }
     },
@@ -36,7 +36,7 @@ async function main() {
       
       account: {
         create: {
-          balance: '100',
+          balance: 100,
         }
       }
     },
