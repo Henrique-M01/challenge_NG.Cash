@@ -39,6 +39,4 @@ model Transactions {
 
   debitId Accounts @relation("debitId", fields: [creditedAccountId], references: [id])
   creditId Accounts @relation("creditId", fields: [debitedAccountId], references: [id])
-
-  @@unique([debitedAccountId, creditedAccountId])
 }
