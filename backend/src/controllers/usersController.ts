@@ -1,8 +1,21 @@
 import { Response, Request } from 'express';
+import { RequestWithToken } from '../interfaces/requestWithToken';
 import UsersService from '../services/usersService';
 
 export default class UsersController {
   constructor(private usersService = new UsersService()) {}
+
+  public async getUserById(req: RequestWithToken, res: Response) {
+    const token = req.tokenData;
+
+    const user = await this.usersService.getUserById(Number(token?.data.id));
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.status(200).json(user);
+  }
 
   public async createUser(req: Request, res: Response) {
     const { username, password } = req.body;

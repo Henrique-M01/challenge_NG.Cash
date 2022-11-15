@@ -12,8 +12,7 @@ export default function authenticate(req: any, res: Response, next: NextFunction
   const SECRET = fs.readFileSync('./jwt.secret.key', { encoding: 'utf-8' });
 
   try {
-    const token = authorization.split(' ')[1];
-    const decoded = jwt.verify(token, SECRET);
+    const decoded = jwt.verify(authorization, SECRET);
 
     req.tokenData = decoded;
 

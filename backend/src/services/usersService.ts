@@ -9,6 +9,12 @@ export default class UsersService {
     this.usersModel = new UsersModel(connection);
   }
 
+  public async getUserById(id: number) {
+    const user = await this.usersModel.getUserById(id);
+
+    return user;
+  }
+
   public async createUser(userName: string, password: string) {
     const user = await this.usersModel.createUser(userName, password);
 

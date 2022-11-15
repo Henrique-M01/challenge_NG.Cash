@@ -1,5 +1,6 @@
 import {Request, Response, Router} from 'express';
 import UsersController from '../controllers/usersController';
+import authenticate from '../middlewares/authenticate';
 import validateBodyUsers from '../middlewares/validateBodyCreateUser';
 
 const userRouter = Router();
@@ -15,5 +16,10 @@ userRouter.post('/login',
   validateBodyUsers,
   (req: Request, res: Response) => usersController.userLogin(req, res),
 );
+
+userRouter.get('/me',
+  authenticate,
+  (req: Request, res: Response) => usersController.getUserById(req, res),
+)
 
 export default userRouter;

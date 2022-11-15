@@ -8,6 +8,21 @@ export default class UsersModel {
     this.connection = connection;
   }
 
+  public async getUserById(id: number) {
+    const user = await this.connection.users.findUnique({
+      where: { id },
+      include: { account: true },
+    });
+
+
+    return {
+      id: user?.id,
+      username: user?.username,
+      accountId: user?.accountId,
+      account: user?.account,
+    };
+  }
+
   public async createUser(userName: string, password: string) {
     const hashedPassword = await this.hashPassword(password);
 
