@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { userSchema } from '../schemas/userSchema';
 
-async function validateBodyUsers(req: Request, res: Response, next: NextFunction) {
+async function validateBodyUsers(req: Request, _res: Response, next: NextFunction) {
   try {
     await userSchema.validateAsync(req.body);
 

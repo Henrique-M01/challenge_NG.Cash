@@ -34,7 +34,7 @@ export default class UsersModel {
         password: hashedPassword,
         account: {
           create: {
-            balance: '100',
+            balance: 100,
           }
         }
       },
