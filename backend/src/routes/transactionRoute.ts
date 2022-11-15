@@ -11,8 +11,12 @@ transactionRouter.put('/',
 [authenticate, validateBodyTransactions],
   (req: Request, res: Response) =>  transactionController.cashInAndCashOut(req, res));
 
-transactionRouter.get('/',
+transactionRouter.get('/in',
 authenticate,
   (req: Request, res: Response) =>  transactionController.getUserTransactionsCashIn(req, res));
-  
+
+transactionRouter.get('/out',
+authenticate,
+  (req: Request, res: Response) =>  transactionController.getUserTransactionsCashOut(req, res));
+
 export default transactionRouter;

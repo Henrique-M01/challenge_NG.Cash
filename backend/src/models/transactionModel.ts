@@ -46,6 +46,16 @@ export default class TransactionModel {
     return transactions;
   }
 
+  public async getUserTransactionsCashOut(id: number) {
+    const transactions = await this.connection.transactions.findMany({
+      where: { debitedAccountId: id },
+      orderBy: { createdAt: 'desc' },
+      select: { id: true, value: true, debitedAccountId: true, creditedAccountId: true },
+    });
+
+    return transactions;
+  }
+
   public async verifyBalance(accountId: number, amount: number) {
     const account = await this.connection.accounts.findUnique({
       where: { id: accountId },

@@ -30,4 +30,12 @@ export default class TransactionController {
 
     return res.status(200).json({ transactions });
   }
+
+  public async getUserTransactionsCashOut(req: RequestWithToken, res: Response) {
+    const token = req.tokenData?.data;
+
+    const transactions = await this.transactionService.getUserTransactionsCashOut(token?.accountId);
+
+    return res.status(200).json({ transactions });
+  }
 }
