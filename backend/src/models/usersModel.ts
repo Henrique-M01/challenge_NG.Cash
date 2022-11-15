@@ -55,6 +55,15 @@ export default class UsersModel {
     return user;
   }
 
+  public async getUserTransactions(id: number) {
+    const transactions = await this.connection.transactions.findMany({
+      where: { debitedAccountId: id, creditedAccountId: id },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    return transactions;
+  }
+
   private async hashPassword(password: string) {
     return md5(password);
   }

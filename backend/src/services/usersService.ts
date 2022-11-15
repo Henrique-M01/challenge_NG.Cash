@@ -32,4 +32,10 @@ export default class UsersService {
 
     return [user, token];
   }
+
+  public async getUserTransactions(id: number) {
+    const transactions = await this.usersModel.getUserTransactions(id);
+
+    return transactions;
+  }
 }

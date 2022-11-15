@@ -22,4 +22,9 @@ userRouter.get('/me',
   (req: Request, res: Response) => usersController.getUserById(req, res),
 )
 
+userRouter.get('/transactions',
+  authenticate,
+  (req: Request, res: Response) => usersController.getUserTransactions(req, res),
+)
+
 export default userRouter;

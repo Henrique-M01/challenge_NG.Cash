@@ -40,4 +40,16 @@ export default class UsersController {
 
     return res.status(200).json({ message: 'Login successful', token: user[1] });
   }
+
+  public async getUserTransactions(req: RequestWithToken, res: Response) {
+    const token = req.tokenData;
+
+    const transactions = await this.usersService.getUserTransactions(Number(token?.data.id));
+
+    if (!transactions) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.status(200).json(transactions);
+  }
 }
